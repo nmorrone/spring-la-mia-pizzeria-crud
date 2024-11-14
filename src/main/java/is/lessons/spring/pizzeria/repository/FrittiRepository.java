@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import is.lessons.spring.pizzeria.model.Fritti;
 
 public interface FrittiRepository extends JpaRepository<Fritti, Integer>{
-	public List <Fritti> findByNomeFrittoContaining(String title);
+	public List <Fritti> findByNomeFrittoContaining(String nome);
 
 }

@@ -15,8 +15,8 @@
 						<p><strong>Scopri Subito il Nostro Menu</strong></p>
 					</div>
 					<div>
-						<form class="d-flex" role="search">
-						        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+						<form class="d-flex" role="search" th:action="@{/pizze}" method="get">
+						        <input class="form-control me-2" name="keyword" th:value="${keyword}" type="search" placeholder="Parola Chiave.." aria-label="Search">
 						        <button class="btn btn-outline-danger" type="submit"><i class="fas fa-search"></i></button>
 						      </form>
 					</div>

@@ -39,9 +39,10 @@ public class PizzeController {
 		
 		if (keyword != null && !keyword.isBlank()) {
 		
-			elencoPizze = pizzeRepo.findByNomePizzaContaining(keyword);
+			elencoPizze = pizzeRepo.findByNomePizzaOrDescrizioneContaining(keyword, keyword);
 			elencoBevande = bevandeRepo.findByNomeBevandaContaining(keyword);
 			elencoFritti = frittiRepo.findByNomeFrittoContaining(keyword);
+			model.addAttribute("keyword", keyword);
 		
 		}
 		else {

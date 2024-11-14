@@ -66,6 +66,8 @@ public class PizzeController {
 		model.addAttribute("infoPizza", infoPizza.get());
 		}
 		else {
+			
+			//controllare TH:IF Condizione per Display
 			model.addAttribute("verifica", 0);
 		}
 		return "pizze/info-pizza";

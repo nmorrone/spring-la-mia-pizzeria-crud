@@ -11,9 +11,37 @@
 </header>
 
 <section class="content">
-	<div class="container">
-		<div class="row justify-content-center p-5">
-			
+	<div class="container pt-5">
+		<div class="row justify-content-center px-5">
+			<div class="col-lg-6 mb-3">
+							<p style="font-size: 18px;">Iniziamo a creare la Pizza</p>
+							<hr style="color: firebrick;">
+						</div>
+		</div>
+		<div class="row justify-content-center px-5">
+			<div class="col-lg-6">
+			<form>
+			  <div class="mb-3">
+			    <label for="nomePizza" class="form-label">Dai un nome alla tua Pizza</label>
+			    <input type="name" class="form-control" id="nomePizza" aria-describedby="emailHelp">
+			    <div id="emailHelp" class="form-text">Il nome deve essere rappresentativo della tua Pizza.</div>
+			  </div>
+			  <div class="mb-3">
+			    <label for="descrizione" class="form-label">Inserisci una descrizione degli ingredienti</label>
+			    <input type="name" class="form-control" id="descrizione">
+				<div id="emailHelp" class="form-text">Inserisci ogni singolo ingrediente specificandolo.</div>
+			  </div>
+			  <div class="mb-3">
+			  			    <label for="prezzo" class="form-label">Inserisci il Prezzo</label>
+			  			    <input type="number" class="form-control" id="prezzo" aria-describedby="emailHelp">
+			  			  </div>
+			  <div class="mb-3 form-check">
+			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+			    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+			  </div>
+			  <button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+			</div>
 		</div>
 	</div>
 </section>

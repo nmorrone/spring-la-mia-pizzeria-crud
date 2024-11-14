@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table (name = "pizze")
@@ -13,10 +16,15 @@ public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+	@NotNull(message = "Devi inserire il nome della Pizza")
+	@NotBlank(message = "Devi inserire il nome della Pizza")
 	private String nomePizza;
+	@NotNull(message = "Inserisci gli ingredienti della pizza separati dalle virgole")
+	@NotBlank(message = "Inserisci gli ingredienti della pizza separati dalle virgole")
 	private String descrizione;
 	private String linkFoto; 
+	@NotNull(message = "Devi inserire il prezzo della Pizza")
+	@Min(value = 5, message = "il prezzo non può essere inferiore a euro 5")
 	private double prezzo;
 	
 	

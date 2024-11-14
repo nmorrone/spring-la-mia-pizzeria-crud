@@ -10,7 +10,7 @@
 	<section class="content pt-5">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="d-flex col-10 justify-content-between">
+				<div class="d-flex flex-wrap col-lg-10 justify-content-between text-center">
 					<div>
 						<p><strong>Scopri Subito il Nostro Menu</strong></p>
 					</div>
@@ -21,7 +21,7 @@
 						      </form>
 					</div>
 				</div>
-				<div class="col-10">
+				<div class="col-lg-10 pt-3">
 					<p class="pb-3" style="color: firebrick;">Le Nostre Pizze</p>
 				</div>
 				<div class="col-lg-10 table-responsive">
@@ -51,13 +51,13 @@
 							<tr><span style="color: firebrick;">I Nostri Fritti</span></tr>
 							<tr>
 								<th>Nome</th>
-								<th>Prezzo</th>
+								<th class="prezzo">Prezzo</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each=" fritto : ${fritti}">
 								<td th:text="${fritto.nomeFritto}"></td>
-								<td th:text="${fritto.prezzo}"></td>
+								<td class="prezzo" th:text="${fritto.prezzo}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -68,13 +68,13 @@
 							<tr><span style="color: firebrick;">Le Bevande</span></tr>
 							<tr>
 								<th>Nome</th>
-								<th>Prezzo</th>
+								<th class="prezzo">Prezzo</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each=" bevanda : ${bevande}">
 								<td th:text="${bevanda.nomeBevanda}"></td>
-								<td th:text="${bevanda.prezzo}"></td>
+								<td class="prezzo" th:text="${bevanda.prezzo}"></td>
 							</tr>
 						</tbody>
 					</table>

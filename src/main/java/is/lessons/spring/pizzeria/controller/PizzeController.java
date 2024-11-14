@@ -6,8 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +20,7 @@ import is.lessons.spring.pizzeria.model.Pizza;
 import is.lessons.spring.pizzeria.repository.BevandeRepository;
 import is.lessons.spring.pizzeria.repository.FrittiRepository;
 import is.lessons.spring.pizzeria.repository.PizzeRepository;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/")
@@ -74,9 +78,20 @@ public class PizzeController {
 	}
 	
 @GetMapping("/pizze/crea-pizza")
-public String creaPizza() {
-	
+public String creaPizza(Model model) {
+	model.addAttribute("pizza", new Pizza());
 	return "pizze/crea-pizza";
+}
+
+@PostMapping("/pizze/crea-pizza")
+public String storePizza(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, Model model) {
+	//blank l'aggiungo nel caso in cui mi passa stringhe vuote / stringhe spazio
+	if(bindingResult.hasErrors()) {
+		return "pizze/crea-pizza";
+	}
+
+	pizzeRepo.save(pizzaForm);
+	return"redirect:/pizze";
 }
 
 }

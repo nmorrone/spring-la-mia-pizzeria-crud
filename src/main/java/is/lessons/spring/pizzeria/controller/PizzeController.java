@@ -1,6 +1,7 @@
 package is.lessons.spring.pizzeria.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,11 +60,21 @@ public class PizzeController {
 	
 	
 	@GetMapping("/pizze/{id}")
-	public String infoPizza(@PathVariable String id, Model model){
-		
-		int a = Integer.parseInt(id);
-		model.addAttribute("infoPizza", pizzeRepo.getOne(a));
+	public String infoPizza(@PathVariable Integer id, Model model){
+		Optional <Pizza> infoPizza= pizzeRepo.findById(id);
+		if(infoPizza.isPresent()) {
+		model.addAttribute("infoPizza", infoPizza.get());
+		}
+		else {
+			model.addAttribute("verifica", 0);
+		}
 		return "pizze/info-pizza";
 	}
 	
+@GetMapping("/pizze/crea-pizza")
+public String creaPizza() {
+	
+	return "pizze/crea-pizza";
+}
+
 }

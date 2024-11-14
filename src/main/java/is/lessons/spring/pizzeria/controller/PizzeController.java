@@ -1,12 +1,18 @@
 package is.lessons.spring.pizzeria.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import is.lessons.spring.pizzeria.model.Bevande;
+import is.lessons.spring.pizzeria.model.Fritti;
+import is.lessons.spring.pizzeria.model.Pizza;
 import is.lessons.spring.pizzeria.repository.BevandeRepository;
 import is.lessons.spring.pizzeria.repository.FrittiRepository;
 import is.lessons.spring.pizzeria.repository.PizzeRepository;
@@ -25,11 +31,28 @@ public class PizzeController {
 	private BevandeRepository bevandeRepo;
 	
 	@GetMapping("/pizze")
-	public String indexPizze(Model model){
+	public String indexPizze(@RequestParam(name = "keyword", required= false) String keyword, Model model){
 		
-		model.addAttribute("pizze", pizzeRepo.findAll());
-		model.addAttribute("fritti", frittiRepo.findAll());
-		model.addAttribute("bevande", bevandeRepo.findAll());
+		List <Pizza> elencoPizze;
+		List <Bevande> elencoBevande;
+		List <Fritti> elencoFritti;
+		
+		if (keyword != null && !keyword.isBlank()) {
+		
+			elencoPizze = pizzeRepo.findByNomePizzaContaining(keyword);
+			elencoBevande = bevandeRepo.findByNomeBevandaContaining(keyword);
+			elencoFritti = frittiRepo.findByNomeFrittoContaining(keyword);
+		
+		}
+		else {
+			elencoPizze = pizzeRepo.findAll();
+			elencoBevande = bevandeRepo.findAll();
+			elencoFritti = frittiRepo.findAll();
+			}
+		
+		model.addAttribute("pizze", elencoPizze);
+		model.addAttribute("fritti", elencoFritti);
+		model.addAttribute("bevande", elencoBevande);
 		return "pizze/lista-pizze";
 	}
 	

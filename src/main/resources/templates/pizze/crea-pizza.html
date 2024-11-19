@@ -23,18 +23,33 @@
 			<form id="pizzaForm" th:object="${pizza}" th:action="@{/pizze/crea-pizza}" method="post">
 			  <div class="mb-3">
 			    <label for="nomePizza" class="form-label">Dai un nome alla tua Pizza</label>
-			    <input type="text" class="form-control" id="nomePizza" th:field="*{nomePizza}">
+			    <input type="text" class="form-control" id="nomePizza" th:field="*{nomePizza}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('nomePizza')}" class="invalid-feedback">
+						<ul>
+						<li th:each="err : ${#fields.errors('nomePizza')}" th:text="${err}"></li>
+						</ul>
+						</div>
 			    <div id="emailHelp" class="form-text">Il nome deve essere rappresentativo della tua Pizza.</div>
 			  </div>
 			  <div class="mb-3">
 			    <label for="descrizione" class="form-label">Inserisci una descrizione degli ingredienti</label>
-			    <input type="text" class="form-control" id="descrizione" th:field="*{descrizione}">
+			    <input type="text" class="form-control" id="descrizione" th:field="*{descrizione}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+						<ul>
+						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
+						</ul>
+					</div>
 				<div id="emailHelp" class="form-text">Inserisci ogni singolo ingrediente specificandolo.</div>
 			  </div>
 			  <div class="mb-3">
-			  			    <label for="prezzo" class="form-label">Inserisci il Prezzo</label>
-			  			    <input type="number" class="form-control" id="prezzo" aria-describedby="emailHelp" th:field="*{prezzo}">
-			  			  </div>
+			  		<label for="prezzo" class="form-label">Inserisci il Prezzo</label>
+			  		<input type="number" class="form-control" id="prezzo" aria-describedby="emailHelp" th:field="*{prezzo}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+						<ul>
+						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
+						</ul>
+					</div>
+			  </div>
 			  <div class="mb-3 form-check">
 			    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
 			    <label class="form-check-label" for="exampleCheck1">Confermo di voler inserire la pizza nel menu.</label>

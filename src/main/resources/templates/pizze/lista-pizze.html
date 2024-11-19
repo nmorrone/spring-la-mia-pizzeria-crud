@@ -31,6 +31,8 @@
 								<th>Nome</th>
 								<th>Descrizione</th>
 								<th class="prezzo">Prezzo</th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,6 +43,8 @@
 								<td><a th:href="@{'/pizze/' + ${pizza.id}}">[[${pizza.nomePizza}]]</a></td>
 								<td th:text="${pizza.descrizione}"></td>
 								<td class="prezzo" th:text="${pizza.prezzo}"></td>
+								<td><a th:href="@{'/pizze/modifica-pizza/' + ${pizza.id}}" class="btn btn-outline-danger" role="button"><i class="fas fa-pen"></i></a</td>
+								<td><button class="btn btn-outline-danger" type="submit"><i class="fas fa-trash"></i></button></td>
 							</tr>
 						</tbody>
 					</table>

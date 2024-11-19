@@ -77,14 +77,14 @@ public class PizzeController {
 		return "pizze/info-pizza";
 	}
 	
-@GetMapping("/pizze/crea-pizza")
-public String creaPizza(Model model) {
+	@GetMapping("/pizze/crea-pizza")
+	public String creaPizza(Model model) {
 	model.addAttribute("pizza", new Pizza());
 	return "pizze/crea-pizza";
-}
+	}
 
-@PostMapping("/pizze/crea-pizza")
-public String storePizza(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, Model model) {
+	@PostMapping("/pizze/crea-pizza")
+	public String storePizza(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, Model model) {
 	//blank l'aggiungo nel caso in cui mi passa stringhe vuote / stringhe spazio
 	if(bindingResult.hasErrors()) {
 		return "pizze/crea-pizza";
@@ -93,5 +93,29 @@ public String storePizza(@Valid @ModelAttribute("pizza") Pizza pizzaForm, Bindin
 	pizzeRepo.save(pizzaForm);
 	return"redirect:/pizze";
 }
+	
+	@GetMapping("/pizze/modifica-pizza/{id}")
+	public String modificaPizza(@PathVariable("id") Integer id, Model model) {
+		Optional <Pizza> infoPizza = pizzeRepo.findById(id);
+		if(infoPizza.isPresent()) {
+			model.addAttribute("pizza", infoPizza.get());
+			}
+			else {
+				//controllare TH:IF Condizione per Display
+				model.addAttribute("verifica", 0);
+			}
+		return "/pizze/modifica-pizza";
+	}
+	@PostMapping("/pizze/modifica-pizza/{id}")
+	public String aggiornaPizza(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			return "pizze/modifica-pizza";
+		}
+		
+		pizzeRepo.save(pizzaForm);
+		
+		return"redirect:/pizze";
+	}
 
 }

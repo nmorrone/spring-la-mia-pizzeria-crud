@@ -38,14 +38,15 @@
 									<a class="nav-link" aria-current="page" th:href="@{'/'}"
 										th:classappend="${pagename == 'home'} ? 'nav-link-active':'nav-link'">Home</a>
 								</li>
+								
 								<li class="nav-item">
 									<a class="nav-link" th:href="@{'/pizze'}"
 										th:classappend="${pagename == 'pizze'} ? 'nav-link-active' : 'nav-link'">Le
 										Nostre Pizze</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" th:href="@{'/pizze/crea-pizza'}"
-										th:classappend="${pagename == 'crea'} ? 'nav-link-active' : 'nav-link'">Crea Pizza</a>
+								<a class="nav-link" aria-current="page" th:href="@{'/pizze/crea-pizza'}"
+								th:classappend="${pagename == 'crea'} ? 'nav-link-active':'nav-link'">Crea Pizza</a>
 								</li>
 							</ul>
 						</div>

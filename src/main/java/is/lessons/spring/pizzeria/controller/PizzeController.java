@@ -62,7 +62,7 @@ public class PizzeController {
 		return "pizze/lista-pizze";
 	}
 	
-	
+	//metodo visualizza info pizza singola
 	@GetMapping("/pizze/{id}")
 	public String infoPizza(@PathVariable Integer id, Model model){
 		Optional <Pizza> infoPizza= pizzeRepo.findById(id);
@@ -76,7 +76,7 @@ public class PizzeController {
 		}
 		return "pizze/info-pizza";
 	}
-	
+	//metodi per visualizzare form creazione pizza e inserirla nel database
 	@GetMapping("/pizze/crea-pizza")
 	public String creaPizza(Model model) {
 	model.addAttribute("pizza", new Pizza());
@@ -93,7 +93,7 @@ public class PizzeController {
 	pizzeRepo.save(pizzaForm);
 	return"redirect:/pizze";
 }
-	
+	//metodi per visualizzare info pizza presente e modificarne i dati aggiornando database
 	@GetMapping("/pizze/modifica-pizza/{id}")
 	public String modificaPizza(@PathVariable("id") Integer id, Model model) {
 		Optional <Pizza> infoPizza = pizzeRepo.findById(id);
@@ -117,5 +117,15 @@ public class PizzeController {
 		
 		return"redirect:/pizze";
 	}
+	
+	@PostMapping("/pizze/rimuovi/{id}")
+	public String rimuoviPizza(@PathVariable Integer id) {
+		
+		pizzeRepo.deleteById(id);
+		
+		return "redirect:/pizze";
+	}
+	
+	
 
 }

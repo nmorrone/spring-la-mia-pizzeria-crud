@@ -44,7 +44,11 @@
 								<td th:text="${pizza.descrizione}"></td>
 								<td class="prezzo" th:text="${pizza.prezzo}"></td>
 								<td><a th:href="@{'/pizze/modifica-pizza/' + ${pizza.id}}" class="btn btn-outline-danger" role="button"><i class="fas fa-pen"></i></a</td>
-								<td><button class="btn btn-outline-danger" type="submit"><i class="fas fa-trash"></i></button></td>
+								<td><form th:action="@{'/pizze/rimuovi/' + ${pizza.id}}" method="post">
+								<button class="btn btn-outline-danger" type="submit" onclick="return confirm('Sei sicuro di voler eliminare la Pizza?')">
+									<i class="fas fa-trash"></i>
+								</button>
+								</form></td>
 							</tr>
 						</tbody>
 					</table>
